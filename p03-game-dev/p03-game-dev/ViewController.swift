@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var winterColor : UIColor?
     var summerColor : UIColor?
-    var vacation : Int = -1
+    var vacation : Int = 1
     var isFarenheit : Bool = true
 
     override func viewDidLoad() {
@@ -35,6 +35,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.isFarenheit = true
         celsiusBtn.backgroundColor = self.view.backgroundColor
         celsiusBtn.setTitleColor(UIColor.init(cgColor: celsiusBtn.layer.borderColor!), for: .normal)
+        
+        farenheitBtn.backgroundColor = UIColor.init(cgColor: celsiusBtn.layer.borderColor!)
+        farenheitBtn.setTitleColor(UIColor.white, for: .normal)
     
     }
     
@@ -42,6 +45,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.isFarenheit = false
         farenheitBtn.backgroundColor = self.view.backgroundColor
         farenheitBtn.setTitleColor(UIColor.init(cgColor: farenheitBtn.layer.borderColor!), for: .normal)
+        
+        farenheitBtn.layer.borderColor = farenheitBtn.titleColor(for: .normal)?.cgColor
         
         
         celsiusBtn.backgroundColor = UIColor.init(cgColor: celsiusBtn.layer.borderColor!)
@@ -53,20 +58,28 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func valueChanged(_ sender: UISlider) {
         if !isFarenheit {
             let val = (slider.value - 32) * (5/9)
-            tempField.text = "\(val)"
+            tempField.text = "\(Int.init(val))° C"
         }
-        if isFarenheit {
-            if slider.value < 60 {
-                slider.value = 0
-                slider.minimumTrackTintColor = winterColor
-                slider.thumbTintColor = winterColor
-             }
         else {
-                slider.value = 1
-                slider.minimumTrackTintColor = summerColor
-                slider.thumbTintColor = summerColor
-            }
+            tempField.text = "\(slider.value)° F"
         }
+        if slider.value < 60 {
+            vacation = 0
+            slider.minimumTrackTintColor = winterColor
+            slider.thumbTintColor = winterColor
+            vacationBtn.backgroundColor = winterColor
+        }
+        else {
+            vacation = 1
+            slider.minimumTrackTintColor = summerColor
+            slider.thumbTintColor = summerColor
+            vacationBtn.backgroundColor = summerColor
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vacationVC = segue.destination as! VacationVC
+        vacationVC.vacation = self.vacation
     }
     
 
