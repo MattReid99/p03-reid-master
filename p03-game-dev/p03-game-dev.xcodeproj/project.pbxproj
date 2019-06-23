@@ -13,6 +13,7 @@
 		B58EB8D822B9E37200D991B7 /* p03_game_dev.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B58EB8D622B9E37200D991B7 /* p03_game_dev.xcdatamodeld */; };
 		B58EB8DA22B9E37400D991B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58EB8D922B9E37400D991B7 /* Assets.xcassets */; };
 		B58EB8DD22B9E37400D991B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58EB8DB22B9E37400D991B7 /* LaunchScreen.storyboard */; };
+		B58EB8E522C0314F00D991B7 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58EB8E422C0314F00D991B7 /* RoundButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B58EB8D922B9E37400D991B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B58EB8DC22B9E37400D991B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B58EB8DE22B9E37400D991B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B58EB8E422C0314F00D991B7 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundButton.swift; path = ../../../../Supportr/Venture/RoundButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		B58EB8CE22B9E37200D991B7 /* p03-game-dev */ = {
 			isa = PBXGroup;
 			children = (
+				B58EB8E422C0314F00D991B7 /* RoundButton.swift */,
 				B58EB8CF22B9E37200D991B7 /* AppDelegate.swift */,
 				B58EB8D122B9E37200D991B7 /* ViewController.swift */,
 				B58EB8D322B9E37200D991B7 /* Main.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B58EB8E522C0314F00D991B7 /* RoundButton.swift in Sources */,
 				B58EB8D822B9E37200D991B7 /* p03_game_dev.xcdatamodeld in Sources */,
 				B58EB8D222B9E37200D991B7 /* ViewController.swift in Sources */,
 				B58EB8D022B9E37200D991B7 /* AppDelegate.swift in Sources */,
