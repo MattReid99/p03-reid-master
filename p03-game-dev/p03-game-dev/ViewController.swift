@@ -118,6 +118,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vacationVC = segue.destination as! VacationVC
         vacationVC.vacation = self.vacation
+        let temp = Int.init(tempField.text!.substring(to: (tempField.text!.index(of: "°"))!))
+        guard temp != nil else {
+            return
+        }
+        vacationVC.temperature = temp!
+        vacationVC.mode = self.isFarenheit ? "F" : "C"
     }
     
 

@@ -11,7 +11,11 @@ import UIKit
 class VacationVC: UIViewController {
     
     var vacation : Int = -1
+    var temperature : Int = -1
+    var mode : Character = "n"
     @IBOutlet weak var imgView : UIImageView!
+    
+    @IBOutlet weak var temperatureLabel: UILabel!
     var images = [UIImage]()
 
     override func viewDidLoad() {
@@ -19,10 +23,11 @@ class VacationVC: UIViewController {
         
         images = [UIImage.init(named: "cold.jpg")!, UIImage.init(named: "warm.jpeg")!]
         
-        guard vacation != -1 else {
+        guard vacation != -1 && temperature != -1 && mode != "n" else {
             self.dismiss(animated: true, completion: nil)
             return
         }
+        temperatureLabel.text = "It is \(self.temperature)°  \(self.mode) outside"
         imgView.image = images[vacation]
     }
     
