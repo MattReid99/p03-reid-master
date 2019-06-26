@@ -31,6 +31,39 @@ class ViewController: UIViewController, UITextFieldDelegate {
         winterColor = slider.tintColor
     }
     
+    @IBAction func textEdited(_ sender: UITextField) {
+        let val = Int.init(sender.text!)
+        guard val != nil else {
+            sender.text = ""
+            return
+        }
+        if isFarenheit && (val! < 0 || val! > 100) {
+            sender.text = ""
+            return
+        }
+        if !isFarenheit && (val! < -17 || val! > 100) {
+            sender.text = ""
+            return
+        }
+        if isFarenheit {
+            slider.value = Float(val!)
+            valueChanged(nil)
+        }
+        else {
+            slider.value = Float((val! - 32) * (5/9))
+            valueChanged(nil)
+        }
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    
     @IBAction func farenheitSelected(_ sender: UIButton) {
         self.isFarenheit = true
         celsiusBtn.backgroundColor = self.view.backgroundColor
@@ -38,30 +71,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         farenheitBtn.backgroundColor = UIColor.init(cgColor: celsiusBtn.layer.borderColor!)
         farenheitBtn.setTitleColor(UIColor.white, for: .normal)
-    
+            self.tempField.text = "\(Int.init(slider.value))° F"
     }
     
     @IBAction func celsiusSelected(_ sender: UIButton) {
+        guard isFarenheit else {
+            return
+        }
         self.isFarenheit = false
         farenheitBtn.backgroundColor = self.view.backgroundColor
-        farenheitBtn.setTitleColor(UIColor.init(cgColor: farenheitBtn.layer.borderColor!), for: .normal)
+        farenheitBtn.setTitleColor(UIColor.init(cgColor: slider.maximumTrackTintColor!.cgColor), for: .normal)
         
         farenheitBtn.layer.borderColor = farenheitBtn.titleColor(for: .normal)?.cgColor
         
         
         celsiusBtn.backgroundColor = UIColor.init(cgColor: celsiusBtn.layer.borderColor!)
         celsiusBtn.setTitleColor(UIColor.white, for: .normal)
+        
+        self.tempField.text = "\(Int.init((slider.value - 32) * (5/9)))° C"
     }
     
     
 
-    @IBAction func valueChanged(_ sender: UISlider) {
+    @IBAction func valueChanged(_ sender: Any?) {
         if !isFarenheit {
             let val = (slider.value - 32) * (5/9)
             tempField.text = "\(Int.init(val))° C"
         }
         else {
-            tempField.text = "\(slider.value)° F"
+            tempField.text = "\(Int.init(slider.value))° F"
         }
         if slider.value < 60 {
             vacation = 0
